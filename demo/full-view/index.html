@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <title>简单的全景图</title>
+  </head>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    body {
+      height: 100%;
+      overflow: hidden;
+    }
+  </style>
+  <body>
+    <div id="container"></div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/three.js/0.140.0/three.min.js"></script>
+    <script type="text/javascript" src="./js/OrbitControls.js"></script>
+    <script type="text/javascript">
+      class panorama {
+        constructor() {
+          this.scene = new THREE.Scene();
+          this.initCamera();
+          this.initMesh();
+          this.initRenderer();
+          this.initControl();
+          this.animate();
+        }
+
+        initCamera() {
+          let camera = (this.camera = new THREE.PerspectiveCamera(
+            100,
+            window.innerWidth / window.innerHeight,
+            1,
+            1100
+          ));
+          camera.position.set(0, 0, 1);
+        }
+        initMesh() {
+          let geometry = new THREE.SphereGeometry(500, 60, 40);
+          geometry.scale(-1, 1, 1);
+          geometry.rotateY(-Math.PI / 2);
+          const queryString = window.location.search;
+          const urlParams = new URLSearchParams(queryString);
+          const paramValue = urlParams.get("imageUrl");
+
+          if (paramValue) {
+            let material = new THREE.MeshBasicMaterial({
+              map: new THREE.TextureLoader().load(
+                "https://img.zcool.cn/community/01a3a2599c3deba80121ad7b597cab.jpg@1280w_1l_2o_100sh.jpg"
+                // paramValue
+              ),
+            });
+
+            let mesh = new THREE.Mesh(geometry, material);
+            this.scene.add(mesh);
+          } else {
+            console.log("imageUrl参数未找到");
+          }
+        }
+        initRenderer() {
+          let container = document.getElementById("container");
+          let renderer = (this.renderer = new THREE.WebGLRenderer({
+            logarithmicDepthBuffer: true,
+          }));
+
+          renderer.setPixelRatio(window.devicePixelRatio);
+          renderer.setSize(window.innerWidth, window.innerHeight);
+          renderer.sortObjects = false;
+          renderer.autoClear = false;
+          container.appendChild(renderer.domElement);
+        }
+        initControl() {
+          this.controls = new THREE.OrbitControls(
+            this.camera,
+            this.renderer.domElement
+          );
+        }
+        animate() {
+          this.render();
+          requestAnimationFrame(() => {
+            this.animate();
+          });
+        }
+        render() {
+          //更新控制器
+          this.controls.update();
+          this.renderer.render(this.scene, this.camera);
+        }
+      }
+      new panorama();
+    </script>
+  </body>
+</html>
