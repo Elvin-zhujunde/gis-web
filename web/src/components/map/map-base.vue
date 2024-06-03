@@ -1,6 +1,6 @@
 // 2024 / 04 / 05 / 星期五 07 : 24 : 08
 <template>
-    <div id="map-container"></div>
+    <div :id="id"></div>
 </template>
 <script setup>
 import { useMap } from "../../Hooks/useMap"

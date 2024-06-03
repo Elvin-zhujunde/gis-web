@@ -12,10 +12,8 @@ import * as turf from "@turf/turf"
 
 let viewer
 // import "cesium/Build/Cesium/Widgets/widgets.css" // 引入Cesium的CSS样式
-
 // 引用Cesium核心库
 // import * as Cesium from "cesium"
-
 // 为Cesium Viewer创建一个容器引用
 const cesiumContainer = ref(null)
 
@@ -54,6 +52,7 @@ const initCesium = async () => {
     if (viewer._cesiumWidget._creditContainer) {
         viewer._cesiumWidget._creditContainer.style.display = "none"
     }
+    console.log(viewer)
     initChina(viewer)
     initHandle(viewer)
 }
@@ -73,6 +72,7 @@ function initChina(viewer) {
             let billboards = new Cesium.BillboardCollection({
                 scene: viewer.scene,
             })
+            console.log(entities)
             for (let i = 0; i < entities.length; ++i) {
                 let entity = entities[i]
                 const { name, center } = entity.properties.getValue()
@@ -85,6 +85,7 @@ function initChina(viewer) {
                 //     Math.floor(Math.random() * 256),
                 //     0.5,
                 // )
+                console.log(entity.polygon)
                 // 其他样式设置...
                 // entity.billboard = billboards.add({
                 //     position: new Cesium.Cartesian3(lng, lat, 5), // 设置Billboard的位置
