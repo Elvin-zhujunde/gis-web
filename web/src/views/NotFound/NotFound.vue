@@ -41,6 +41,7 @@ export default defineComponent({
         align-items: center;
         .img {
             width: 20%;
+            
         }
         .text {
             padding: 20px 0;
@@ -48,4 +49,6 @@ export default defineComponent({
         }
     }
 }
+
+
 </style>
