@@ -6,7 +6,11 @@
                     <CascadeRegion></CascadeRegion>
                 </BoxPanel>
             </template>
-            <template #default></template>
+            <template #default>
+                <BoxPanel title="图层">
+                    <LayerTree></LayerTree>
+                </BoxPanel>
+            </template>
             <template #footer>this is footer</template>
         </Panel>
     </PanelLeft>
@@ -41,7 +45,8 @@ import Panel from "@/components/Panel/AutoHightPanel.vue"
 import BoxPanel from "@/components/Panel/BoxPanel.vue"
 import Pie from "@/components/echarts/pie/pie_1/index.vue"
 import MixLineBar from "@/components/echarts/MixLineBar.vue"
-import CascadeRegion from '@/views/map2d/CascadeRegion/CascadeRegion'
+import CascadeRegion from "@/views/map2d/CascadeRegion/CascadeRegion"
+import LayerTree from "@/views/Overview/LayerTree/LayerTree.vue"
 const state = reactive({
     options: [
         {
