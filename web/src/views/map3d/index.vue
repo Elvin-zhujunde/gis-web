@@ -77,7 +77,7 @@ function initChina(viewer) {
                 let entity = entities[i]
                 const { name, center } = entity.properties.getValue()
 
-                let [lng, lat] = center
+                // let [lng, lat] = center
                 // 自定义样式
                 // entity.polygon.material.color = Cesium.Color.fromCssColorString(
                 //     Math.floor(Math.random() * 256),

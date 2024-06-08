@@ -5,6 +5,7 @@
     </template>
     <MapLayout>
         <template v-if="mapStore.mapLoadStatus">
+            <MapControl />
             <TrafficLayer v-if="layerStore.trafficLayerStatus" />
             <CascaderArea v-if="layerStore.cascaderLayerStatus" />
         </template>
@@ -12,11 +13,12 @@
 </template>
 
 <script setup>
-import MapLayout from "@/components/map/map-layout.vue"
+import MapLayout from "./map2d-layout.vue"
 import TrafficLayer from "@/views/map2d/Layers/TrafficLayer.vue"
 import CascaderArea from "@/views/map2d/CascadeRegion/map/CascaderArea.vue"
 import { useMapStore } from "@/Hooks/useMap.js"
 import { useLayerStore } from "@/views/map2d/LayerStore/layer.js"
+import MapControl from "./MapControl/MapControl.vue"
 const layerStore = useLayerStore()
 const mapStore = useMapStore()
 let map = null

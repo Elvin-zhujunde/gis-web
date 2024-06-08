@@ -42,16 +42,17 @@ const routes = [
                     describe: "大屏展示",
                 },
             },
+            {
+                path: "/overview3d",
+                component: () => import("@/views/map3d/index.vue"),
+                meta: {
+                    title: "总览",
+                    describe: "大屏展示",
+                },
+            },
         ],
     },
-    {
-        path: "/overview3d",
-        component: () => import("@/views/map3d/index.vue"),
-        meta: {
-            title: "总览",
-            describe: "大屏展示",
-        },
-    },
+
     {
         path: "/:pathMatch(.*)*",
         name: "NotFound",

@@ -1,6 +1,7 @@
 <template>
     <div class="map-layout">
         <MapBase :id="id" />
+
         <div class="map-components">
             <slot></slot>
         </div>
@@ -8,7 +9,7 @@
 </template>
 
 <script setup>
-import MapBase from "./map-base.vue"
+import MapBase from "./map2d-base.vue"
 const props = defineProps({
     id: {
         type: String,

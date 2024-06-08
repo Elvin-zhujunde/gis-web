@@ -28,10 +28,3 @@ const map = useMap(props.id, { container: "map-container" })
     z-index: 0;
 }
 </style>
-<script>
-import { defineComponent, onMounted } from "vue"
-
-export default defineComponent({
-    name: "map-base",
-})
-</script>
