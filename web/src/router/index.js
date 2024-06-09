@@ -4,7 +4,7 @@ import NProgress from "nprogress"
 const routes = [
     {
         path: "/",
-        redirect: "/overview3d",
+        redirect: "/overview2",
     },
     {
         path: "/MarkdownEdit",
@@ -35,16 +35,8 @@ const routes = [
                 },
             },
             {
-                path: "/overview2d",
+                path: "/overview",
                 component: () => import("@/views/Overview/OverviewIndex.vue"),
-                meta: {
-                    title: "总览",
-                    describe: "大屏展示",
-                },
-            },
-            {
-                path: "/overview3d",
-                component: () => import("@/views/map3d/index.vue"),
                 meta: {
                     title: "总览",
                     describe: "大屏展示",

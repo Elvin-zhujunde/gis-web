@@ -1,8 +1,7 @@
 <template></template>
 <script setup>
-import { useMapStore } from "@/Hooks/useMap.js"
+import { useMapStore } from "@/store/useMap.js"
 const store = useMapStore()
-const map = store.getMap("main")
 var marker = new AMap.Marker({
     position: [114.3, 30.59],
     // 将 html 传给 content

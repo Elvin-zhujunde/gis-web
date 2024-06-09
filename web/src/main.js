@@ -7,7 +7,7 @@ import Antd from "ant-design-vue"
 import "ant-design-vue/dist/reset.css"
 import "@/styles/index.less"
 
-// import { init } from "./Hooks/useMap"
+// import { init } from "./store/useMap"
 // init()
 const pinia = createPinia()
 const app = createApp(App)

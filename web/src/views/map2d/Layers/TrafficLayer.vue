@@ -1,6 +1,6 @@
 <template></template>
 <script setup>
-import { useMapStore } from "@/Hooks/useMap.js"
+import { useMapStore } from "@/store/useMap.js"
 const store = useMapStore()
 onMounted(() => {})
 </script>

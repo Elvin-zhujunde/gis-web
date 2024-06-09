@@ -38,6 +38,9 @@
 import { CloseOutlined } from "@ant-design/icons-vue"
 export default {
     name: "ComPanel",
+    components: {
+        CloseOutlined,
+    },
     props: {
         title: {},
         position: {},

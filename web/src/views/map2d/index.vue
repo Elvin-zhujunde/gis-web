@@ -16,7 +16,7 @@
 import MapLayout from "./map2d-layout.vue"
 import TrafficLayer from "@/views/map2d/Layers/TrafficLayer.vue"
 import CascaderArea from "@/views/map2d/CascadeRegion/map/CascaderArea.vue"
-import { useMapStore } from "@/Hooks/useMap.js"
+import { useMapStore } from "@/store/useMap.js"
 import { useLayerStore } from "@/views/map2d/LayerStore/layer.js"
 import MapControl from "./MapControl/MapControl.vue"
 const layerStore = useLayerStore()
@@ -26,26 +26,7 @@ watch(
     () => mapStore.mapLoadStatus,
     val => {
         if (!val) return
-        onMapInited()
     },
 )
-function onMapInited() {
-    map = mapStore.getMap("main")
-    setMapStyle(map)
-    setMapEvent(map)
-}
-function setMapStyle(map) {
-    map.setMapStyle("amap://styles/dark")
-}
-
-function setMapEvent(map) {
-    map.on("click", onClickMap)
-}
-function onClickMap(e) {
-    console.log(e)
-}
-onBeforeUnmount(() => {
-    map && map.off("click", onClickMap)
-})
 </script>
 <style scoped lang="less"></style>

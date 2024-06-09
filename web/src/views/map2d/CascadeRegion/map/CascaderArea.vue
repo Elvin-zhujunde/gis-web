@@ -1,11 +1,10 @@
 <template></template>
 <script setup>
-import { useMapStore } from "@/Hooks/useMap.js"
+import { useMapStore } from "@/store/useMap.js"
 import { useLayerStore } from "@/views/map2d/LayerStore/layer.js"
 import { useCascaderStore } from "../cascaedArea.store"
 import * as turf from "@turf/turf"
 const store = useMapStore()
-const map = store.getMap("main")
 const layer = useLayerStore()
 const cascaderState = useCascaderStore()
 let GEOJSON_LAYER = null
