@@ -23,16 +23,7 @@ const treeData = [
     {
         title: "parent 1",
         key: "0-0",
-        children: [
- 
-        ],
-    },
-    {
-        title: "parent 1",
-        key: "0-0",
-        children: [
- 
-        ],
+        children: [],
     },
 ]
 const expandedKeys = ref(["0-0-0", "0-0-1"])
