@@ -46,7 +46,7 @@ export default {
         position: {},
         showIcon: {
             type: Boolean,
-            default: true,
+            default: false,
         },
     },
     beforeDestroy() {

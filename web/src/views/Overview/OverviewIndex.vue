@@ -11,7 +11,11 @@
                     <LayerTree></LayerTree>
                 </BoxPanel>
             </template>
-            <template #footer>this is footer</template>
+            <template #footer>
+                <BoxPanel title="地图控制">
+                    <MapControl v-if="mapStore.mapLoadStatus"></MapControl>
+                </BoxPanel>
+            </template>
         </Panel>
     </PanelLeft>
     <PanelRight>
@@ -47,6 +51,10 @@ import Pie from "@/components/echarts/pie/pie_1/index.vue"
 import MixLineBar from "@/components/echarts/MixLineBar.vue"
 import CascadeRegion from "@/views/map2d/CascadeRegion/CascadeRegion"
 import LayerTree from "@/views/Overview/LayerTree/LayerTree.vue"
+import MapControl from "@/views/map2d/MapControl/MapControl.vue"
+import { useMapStore } from "../../store/useMap"
+const mapStore = useMapStore()
+
 const state = reactive({
     options: [
         {

@@ -18,5 +18,8 @@ export const useMapStore = defineStore({
         setXXX(xxx) {
             this.xxx = xxx
         },
+        setMapMode(mapMode) {
+            this.mapMode = mapMode
+        },
     },
 })

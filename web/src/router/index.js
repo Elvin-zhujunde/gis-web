@@ -4,7 +4,7 @@ import NProgress from "nprogress"
 const routes = [
     {
         path: "/",
-        redirect: "/overview2",
+        redirect: "/overview",
     },
     {
         path: "/MarkdownEdit",

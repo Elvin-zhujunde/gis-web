@@ -18,16 +18,7 @@ var marker = new AMap.Marker({
 
 // 将 markers 添加到地图
 map.add(marker)
-onMounted(() => {
-    // store.addLayer({
-    //     id: "foot-maker-layer",
-    //     name: "FootMaker",
-    //     layer: L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    //         maxZoom: 19,
-    //         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    //     }),
-    // })
-})
+onMounted(() => {})
 </script>
 
 <style scoped>
