@@ -11,8 +11,7 @@ if (process.env.NODE_ENV === "development") {
 // 项目信息
 router.get(
   "/",
-  (req, res, next) => {
-    console.log(req, res, next);
+  async (req, res, next) => {
     next();
   },
   controller.test.test
