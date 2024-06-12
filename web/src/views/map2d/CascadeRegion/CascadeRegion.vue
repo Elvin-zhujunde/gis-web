@@ -5,6 +5,7 @@
         style="width: 100%"
         expand-trigger="hover"
         :field-names="{ value: 'code' }"
+        :getPopupContainer="(triggerNode) => triggerNode.parentNode.parentNode"
         change-on-select
         placeholder="请输入区划"
     >

@@ -18,7 +18,7 @@ export default {
     top: 55px;
     z-index: 50;
     width: 400px;
-    height: 100%;
+    height: calc(100vh - 55px);
     display: flex;
     flex-direction: column;
     background: rgba(255, 255, 255, 1);
