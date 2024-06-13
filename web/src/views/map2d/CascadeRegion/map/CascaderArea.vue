@@ -1,32 +1,24 @@
 <template></template>
 <script setup>
-import { useMapStore } from "@/store/useMap.js"
 import { useLayerStore } from "@/views/map2d/LayerStore/layer.js"
 import { useCascaderStore } from "../cascaedArea.store"
 import * as turf from "@turf/turf"
-const store = useMapStore()
 const layer = useLayerStore()
 const cascaderState = useCascaderStore()
+
 let GEOJSON_LAYER = null
-onMounted(() => {
-    // store.addLayer({
-    //     id: "foot-maker-layer",
-    //     name: "FootMaker",
-    //     layer: L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    //         maxZoom: 19,
-    //         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    //     }),
-    // })
-})
-function onClickMap(e) {
-    console.log(e)
-}
+
 function removeLayer() {
-    GEOJSON_LAYER && GEOJSON_LAYER.clearOverlays()
+    GEOJSON_LAYER?.clearOverlays()
     GEOJSON_LAYER = null
 }
 function createLayer(geojson) {
+    createAreaLayer(geojson)
+}
+
+function createAreaLayer(geojson) {
     // 加载AMap.GeoJSON插件
+
     AMap.plugin("AMap.GeoJSON", function () {
         // 创建GeoJSON图层
         GEOJSON_LAYER = new AMap.GeoJSON({
@@ -34,9 +26,12 @@ function createLayer(geojson) {
             geoJSON: geojson,
             // 定义点的样式
             getMarker: function (geojson, lnglats) {
+                const { properties } = geojson
                 // 创建Marker
                 return new AMap.Marker({
-                    position: lnglats[0], // 点的经纬度
+                    position: lnglats, // 点的经纬度
+                    offset: new AMap.Pixel(-10, -10),
+                    title: properties?.name,
                     // 其他Marker配置...
                 })
             },
@@ -89,25 +84,34 @@ function createLayer(geojson) {
 function fitView(geojson) {
     if (!geojson) return
     const [zoom, { lng, lat }] = map.getFitZoomAndCenterByBounds(turf.bbox(geojson))
-    const center = turf.center(geojson)
-    console.log({
-        zoom,
-        lng,
-        lat,
-    })
     map.setZoomAndCenter(zoom - 0.5, [lng, lat])
 }
 
+function getAreaCenter(geojson) {
+    return {
+        type: "FeatureCollection",
+        features: geojson.features.map(i => {
+            const { properties } = i
+            return {
+                type: "Feature",
+                properties,
+                geometry: {
+                    coordinates: properties.center,
+                    type: "Point",
+                },
+            }
+        }),
+    }
+}
 watch(
     () => layer.CascaderAreaData,
     val => {
-        // removeLayer()
-        if (val) {
-            GEOJSON_LAYER ? GEOJSON_LAYER.importData(val) : createLayer(val)
-            fitView(val)
-        } else {
+        if (!val) {
             removeLayer()
+            return
         }
+        GEOJSON_LAYER ? GEOJSON_LAYER.importData(val) : createLayer(val)
+        // fitView(val)
     },
     {
         immediate: true,

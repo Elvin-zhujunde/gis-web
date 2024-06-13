@@ -54,7 +54,7 @@ const menuState = reactive({
         {
             label: "大屏展示",
             dataIndex: "isShowLayerManger",
-            route: "/overview2d",
+            route: "/overview",
         },
         {
             label: "图层管理",
