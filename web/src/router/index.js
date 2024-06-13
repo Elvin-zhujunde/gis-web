@@ -9,7 +9,12 @@ const routes = [
     {
         path: "/MarkdownEdit",
         name: "MarkdownEdit",
-        component: () => import("@/views/MarkdownEdit/MarkdownEdit.vue"),
+        component: () => import("@/pages/MarkdownEdit/MarkdownEdit.vue"),
+    },
+    {
+        path: "/threeAndCesium",
+        name: "ThreeAndCesium",
+        component: () => import("@/pages/ThreeAndCesium/ThreeAndCesium.vue"),
     },
     {
         path: "/Login",

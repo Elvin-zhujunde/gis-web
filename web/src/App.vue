@@ -9,7 +9,7 @@ onMounted(() => {
     autofit.init({
         dh: 960, // 设计稿高度
         dw: 1920, //设计稿宽度
-        el: "app",
+        el: "#app",
         callback: res => {
             console.log(res)
         },
@@ -30,7 +30,7 @@ onMounted(() => {
 })
 
 onBeforeMount(() => {
-    autofit.off()
+    autofit && autofit.off()
 })
 </script>
 <style lang="less" scoped></style>

@@ -111,7 +111,7 @@ watch(
             return
         }
         GEOJSON_LAYER ? GEOJSON_LAYER.importData(val) : createLayer(val)
-        // fitView(val)
+        fitView(val)
     },
     {
         immediate: true,
