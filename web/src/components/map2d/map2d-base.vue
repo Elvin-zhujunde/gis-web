@@ -3,7 +3,7 @@
     <div id="map-container"></div>
 </template>
 <script setup>
-import { useMapStore } from "@/store/useMap"
+import { useMapStore } from "@/store/map"
 
 const mapStore = useMapStore()
 const props = defineProps({

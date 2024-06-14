@@ -8,21 +8,21 @@ export const useMapStore = defineStore({
     state: () => ({
         mapLoadStatus: false, // 地图加载状态 二三维通用，mapMode切换时置false
         mapMode: "3d", // 地图模式 2d 3d
-        contextMenu: null, // 右键菜单
+        flyPoi: null,
+        flyArea: null,
+        contextMenu: null, // 2d 右键菜单
 
-        modelCascaderList: [],
-        maxLevel: 3,
-        options: areaTree,
+        // 行政区划
+        cascader_vmodel: [], // overview - 行政区划选择树绑定值
+        cascader_max_level: 3, // overview - 行政区划选择树绑定值数组length最大值，用来限制选择树的最大层级
+        cascader_option_source: areaTree, // 行政区划选择树的数据源
+        cascaer_geo_data: null,
+        cascader_show_status: true,
 
-        CascaderAreaData: null,
-        cascaderLayerStatus: true,
         loadedLayerNameList: [], // 处理图层的互斥事件
     }),
     getters: {},
     actions: {
-        setXXX(xxx) {
-            this.xxx = xxx
-        },
         setMapMode(mapMode) {
             this.mapMode = mapMode
         },

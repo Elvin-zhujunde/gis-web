@@ -1,7 +1,7 @@
 <template>
     <a-cascader
-        v-model:value="modelCascaderList"
-        :options="mapStore.options"
+        v-model:value="cascader_vmodel"
+        :options="mapStore.cascader_option_source"
         style="width: 100%"
         expand-trigger="hover"
         :field-names="{ value: 'code' }"
@@ -28,19 +28,19 @@
 </template>
 <script setup>
 import { storeToRefs } from "pinia"
-import { useMapStore } from "@/store/useMap"
+import { useMapStore } from "@/store/map"
 const mapStore = useMapStore()
-const { modelCascaderList } = storeToRefs(mapStore)
+const { cascader_vmodel } = storeToRefs(mapStore)
 
-watch(modelCascaderList, async val => {
+watch(cascader_vmodel, async val => {
     if (!val) {
-        mapStore.CascaderAreaData = null
+        mapStore.cascaer_geo_data = null
         return
     }
 
     let adcode = val[val.length - 1]
 
-    mapStore.CascaderAreaData = await (
+    mapStore.cascaer_geo_data = await (
         await fetch(`https://geo.datav.aliyun.com/areas_v3/bound/${adcode}_full.json`, {})
     ).json()
 })

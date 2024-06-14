@@ -1,6 +1,6 @@
 <template></template>
 <script setup>
-import { useMapStore } from "@/store/useMap.js"
+import { useMapStore } from "@/store/map.js"
 const store = useMapStore()
 var marker = new AMap.Marker({
     position: [114.3, 30.59],

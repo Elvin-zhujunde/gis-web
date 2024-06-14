@@ -52,7 +52,7 @@ import MixLineBar from "@/components/echarts/MixLineBar.vue"
 import CascadeRegion from "./CascadeRegion/CascadeRegion"
 import LayerTree from "./LayerTree/LayerTree.vue"
 import MapControl from "./MapControl/MapControl.vue"
-import { useMapStore } from "@/store/useMap"
+import { useMapStore } from "@/store/map"
 const mapStore = useMapStore()
 
 const state = reactive({

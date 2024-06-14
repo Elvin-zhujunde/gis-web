@@ -4,26 +4,72 @@
 </template>
 
 <script setup>
-// initChina(viewer)
+import * as turf from "@turf/turf"
+import { useMapStore } from "@/store/map"
+const mapStore = useMapStore()
+let CASCADE_DATASOURCE = null
+function renderPolygon(geojson, zoomto = true) {
+    const viewer = window.viewer
+    const dataSource = new Cesium.GeoJsonDataSource()
+    dataSource
+        .load(geojson, {
+            clampToGround: true,
+        })
+        .then(val => {
+            viewer.dataSources.add(dataSource)
+            const entities = dataSource.entities.values
+            for (let i = 0; i < entities.length; i++) {
+                const entity = entities[i]
+                entity.polygon.material = Cesium.Color.fromCssColorString("#fff").withAlpha(0)
+                entity.polyline = {
+                    positions: entity.polygon.hierarchy._value.positions,
+                    width: 3,
+                    material: Cesium.Color.fromCssColorString("#689fd2"),
+                }
+                const center = Cesium.BoundingSphere.fromPoints(entity.polygon.hierarchy._value.positions).center
+                entity.position = center
+                console.log(entity)
+                entity.label = {
+                    text: entity.properties.name,
+                    color: Cesium.Color.fromCssColorString("#fff"),
+                    font: "normal 32px MicroSoft YaHei",
+                    showBackground: true,
+                    scale: 0.5,
+                    horizontalOrigin: Cesium.HorizontalOrigin.LEFT_CLICK,
+                    verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+                    disableDepthTestDistance: 10000.0,
+                    enableCollisionDetection: true,
+                }
+            }
+            const z = [10000000, 1000000, 800000][mapStore.cascader_vmodel?.length - 1]
+            const [x, y] = turf.center(geojson).geometry.coordinates
+            mapStore.flyPoi = { x, y, z }
+        })
+    return dataSource
+}
 
-// function initChina(viewer) {
-//     let geojsonDataSource = new Cesium.GeoJsonDataSource()
-//     geojsonDataSource
-//         .load("/json/world.json", {
-//             stroke: Cesium.Color.BLUE, // 轮廓颜色
-//             strokeWidth: 10.0, //获取或设置折线和多边形轮廓的默认宽度。
-//             fill: Cesium.Color.WHITE.withAlpha(0), // 填充颜色，透明度为0.5
-//         })
-//         .then(function (dataSource) {
-//             // 将数据源添加到viewer中
-//             viewer.dataSources.add(dataSource)
-//             // 获取多边形实体
-//             let billboards = new Cesium.BillboardCollection({
-//                 scene: viewer.scene,
-//             })
+function clearPolygon(dataSource) {
+    if (dataSource) {
+        // 从viewer中移除dataSource
+        const viewer = window.viewer
+        viewer.dataSources.remove(dataSource)
+    }
+}
 
-//             viewer.scene.primitives.add(billboards)
-//         })
-// }
+watch(
+    () => mapStore.cascaer_geo_data,
+    val => {
+        if (!val) {
+            return
+        }
+        CASCADE_DATASOURCE && clearPolygon(CASCADE_DATASOURCE)
+
+        CASCADE_DATASOURCE = renderPolygon(val)
+    },
+    {
+        immediate: true,
+        deep: true,
+    },
+)
 </script>
 <style scoped lang="less"></style>

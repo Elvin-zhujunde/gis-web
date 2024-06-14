@@ -1,7 +1,7 @@
 <template></template>
 <script setup>
 import * as turf from "@turf/turf"
-import { useMapStore } from "@/store/useMap"
+import { useMapStore } from "@/store/map"
 const mapStore = useMapStore()
 
 let GEOJSON_LAYER = null
@@ -61,11 +61,11 @@ function createAreaLayer(geojson) {
                 })
                 polygon.on("click", () => {
                     const cascaderValue = [...geo.properties.acroutes, geo.properties.adcode]
-                    if (cascaderValue.length > mapStore.maxLevel) {
+                    if (cascaderValue.length > mapStore.cascader_max_level) {
                         alert("已达到最大层级")
                         return
                     }
-                    mapStore.modelCascaderList = cascaderValue
+                    mapStore.cascader_vmodel = cascaderValue
                 })
                 polygon.on("mouseout", () => {
                     polygon.setOptions({
@@ -102,7 +102,7 @@ function getAreaCenter(geojson) {
     }
 }
 watch(
-    () => mapStore.CascaderAreaData,
+    () => mapStore.cascaer_geo_data,
     val => {
         if (!val) {
             removeLayer()

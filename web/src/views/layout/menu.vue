@@ -34,12 +34,10 @@
 
 <script setup>
 import { UserOutlined } from "@ant-design/icons-vue"
-import { usePlaceStore } from "@/store/place.js"
 import $config from "@/const"
 const route = useRoute()
 const router = useRouter()
 
-const placeStore = usePlaceStore()
 console.log(route, "@@@@@@@@@@@@@@@@")
 const searchState = reactive({
     current: {},
