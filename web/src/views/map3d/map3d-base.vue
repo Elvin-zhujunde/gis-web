@@ -8,6 +8,7 @@
 <script setup>
 import { ref, onMounted, onBeforeMount } from "vue"
 import * as turf from "@turf/turf"
+import { useMapStore } from "../../store/useMap"
 Cesium.Ion.defaultAccessToken =
     // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmYjFhOGQ5My0zNjc4LTRhNzUtODgyMC02Y2UwNzE0Y2UyM2IiLCJpZCI6MjExNTEwLCJpYXQiOjE3MTQxMjI4ODR9.f4FQYls56qNjRQvoQpKFeMOO0yewLxp0oU4oq9AM9pg"
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyMGZjMTZjMC00YTQ4LTQwODAtOTg5YS1lOWU2NThjMTk0YjMiLCJpZCI6MjExNTEwLCJpYXQiOjE3MTQxMjIzNDZ9.o5yDodfaExKiDdc9mN0N86ybB3l2K4ggAThC3SWURkE"
@@ -19,7 +20,7 @@ let viewer
 
 // 为Cesium Viewer创建一个容器引用
 const cesiumContainer = ref(null)
-
+const mapStore = useMapStore()
 // 定义初始化Cesium的方法
 const initCesium = async () => {
     // 使用Cesium提供的Viewer来初始化一个地球
@@ -61,6 +62,8 @@ const initCesium = async () => {
     })
     initChina(viewer)
     initHandle(viewer)
+    mapStore.mapLoadStatus = true
+
 }
 function initChina(viewer) {
     let geojsonDataSource = new Cesium.GeoJsonDataSource()
@@ -85,15 +88,14 @@ function initHandle(viewer) {
     const handle = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas)
     handle.setInputAction(function (click) {
         const pickedObject = viewer.scene.pick(click.position)
-
-        const attr = pickedObject.primitive.getGeometryInstanceAttributes(pickedObject.id)
-        const color = attr.color
+        debugger
+        // const attr = pickedObject.primitive.getGeometryInstanceAttributes(pickedObject.id)
+        // const color = attr.color
         // 处理点击事件
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK)
 
     handle.setInputAction(function (movement) {
         const pickedObject = viewer.scene.pick(movement.endPosition)
-
         // 处理移动事件
     }, Cesium.ScreenSpaceEventType.MOUSE_MOVE)
 }

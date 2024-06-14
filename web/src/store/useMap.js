@@ -6,12 +6,9 @@ import { onMounted, onUnmounted } from "vue"
 export const useMapStore = defineStore({
     id: "MapManager",
     state: () => ({
-        mapLoadStatus: false,
-        contextMenu: null,
-        footermarkerPoi: {},
-        mapMode: "2d",
-        mapStateInfo2d: {},
-        mapSateInfo3d: {},
+        mapLoadStatus: false, // 地图加载状态 二三维通用，mapMode切换时置false
+        mapMode: "3d", // 地图模式 2d 3d
+        contextMenu: null, // 右键菜单
     }),
     getters: {},
     actions: {

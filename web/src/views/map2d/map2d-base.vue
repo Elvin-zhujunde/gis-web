@@ -50,8 +50,7 @@ onMounted(async () => {
     mapStore.contextMenu = new AMap.ContextMenu()
 
     map.on("rightclick", function (e) {
-        mapStore.footermarkerPoi = e.lnglat
-        mapStore.contextMenu && mapStore.contextMenu.open(map, e.lnglat)
+        debugger
     })
     // 清除 marker
     function clearMarker() {

@@ -23,7 +23,7 @@
             style="height: 50%"
             title="123"
         >
-            <Pie
+            <Piew
                 id="pie_type"
                 :options="state.options"
                 :colors="state.colors"
@@ -51,7 +51,7 @@ import Pie from "@/components/echarts/pie/pie_1/index.vue"
 import MixLineBar from "@/components/echarts/MixLineBar.vue"
 import CascadeRegion from "@/views/map2d/CascadeRegion/CascadeRegion"
 import LayerTree from "@/views/Overview/LayerTree/LayerTree.vue"
-import MapControl from "@/views/map2d/MapControl/MapControl.vue"
+import MapControl from "@/views/MapControl/MapControl.vue"
 import { useMapStore } from "../../store/useMap"
 const mapStore = useMapStore()
 
