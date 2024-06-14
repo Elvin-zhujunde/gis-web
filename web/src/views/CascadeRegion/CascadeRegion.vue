@@ -29,7 +29,7 @@
 <script setup>
 import { useCascaderStore } from "./cascaedArea.store"
 const cascaderState = useCascaderStore()
-import { useLayerStore } from "@/views/map2d/LayerStore/layer.js"
+import { useLayerStore } from "@/views/LayerStore/layer.js"
 import { storeToRefs } from "pinia"
 
 const LayerStore = useLayerStore()

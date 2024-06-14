@@ -1,6 +1,6 @@
 <template></template>
 <script setup>
-import { useLayerStore } from "@/views/map2d/LayerStore/layer.js"
+import { useLayerStore } from "@/views/LayerStore/layer.js"
 import { useCascaderStore } from "../cascaedArea.store"
 import * as turf from "@turf/turf"
 const layer = useLayerStore()

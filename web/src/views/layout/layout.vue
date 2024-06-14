@@ -19,8 +19,8 @@
 <script setup>
 import Menu from "./menu.vue"
 import GobalComponents from "./GobalComponents.vue"
-import Map2d from "@/views/map2d/index.vue"
-import Map3d from "@/views/map3d/index.vue"
+import Map2d from "@/components/map2d/index.vue"
+import Map3d from "@/components/map3d/index.vue"
 import { useMapStore } from "@/store/useMap.js"
 const mapStore = useMapStore()
 </script>

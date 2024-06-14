@@ -30,7 +30,7 @@ onMounted(() => {
 })
 
 onBeforeMount(() => {
-    autofit && autofit.off()
+    // autofit && auwtofit.off()
 })
 </script>
 <style lang="less" scoped></style>

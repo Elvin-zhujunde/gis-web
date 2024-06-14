@@ -8,7 +8,7 @@
 <script setup>
 import { ref, onMounted, onBeforeMount } from "vue"
 import * as turf from "@turf/turf"
-import { useMapStore } from "../../store/useMap"
+import { useMapStore } from "@/store/useMap"
 Cesium.Ion.defaultAccessToken =
     // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmYjFhOGQ5My0zNjc4LTRhNzUtODgyMC02Y2UwNzE0Y2UyM2IiLCJpZCI6MjExNTEwLCJpYXQiOjE3MTQxMjI4ODR9.f4FQYls56qNjRQvoQpKFeMOO0yewLxp0oU4oq9AM9pg"
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyMGZjMTZjMC00YTQ4LTQwODAtOTg5YS1lOWU2NThjMTk0YjMiLCJpZCI6MjExNTEwLCJpYXQiOjE3MTQxMjIzNDZ9.o5yDodfaExKiDdc9mN0N86ybB3l2K4ggAThC3SWURkE"
@@ -60,30 +60,11 @@ const initCesium = async () => {
             distance: 1000,
         },
     })
-    initChina(viewer)
     initHandle(viewer)
     mapStore.mapLoadStatus = true
 
 }
-function initChina(viewer) {
-    let geojsonDataSource = new Cesium.GeoJsonDataSource()
-    geojsonDataSource
-        .load("/json/world.json", {
-            stroke: Cesium.Color.BLUE, // 轮廓颜色
-            strokeWidth: 10.0, //获取或设置折线和多边形轮廓的默认宽度。
-            fill: Cesium.Color.WHITE.withAlpha(0), // 填充颜色，透明度为0.5
-        })
-        .then(function (dataSource) {
-            // 将数据源添加到viewer中
-            viewer.dataSources.add(dataSource)
-            // 获取多边形实体
-            let billboards = new Cesium.BillboardCollection({
-                scene: viewer.scene,
-            })
 
-            viewer.scene.primitives.add(billboards)
-        })
-}
 function initHandle(viewer) {
     const handle = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas)
     handle.setInputAction(function (click) {

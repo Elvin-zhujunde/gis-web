@@ -5,26 +5,17 @@
     </template>
     <MapLayout>
         <template v-if="mapStore.mapLoadStatus">
-            <TrafficLayer v-if="layerStore.trafficLayerStatus" />
-            <CascaderArea v-if="layerStore.cascaderLayerStatus" />
+            <CascaderArea2d v-if="layerStore.cascaderLayerStatus" />
         </template>
     </MapLayout>
 </template>
 
 <script setup>
 import MapLayout from "./map2d-layout.vue"
-import TrafficLayer from "@/views/map2d/Layers/TrafficLayer.vue"
-import CascaderArea from "@/views/map2d/CascadeRegion/map/CascaderArea.vue"
+import CascaderArea2d from "@/views/CascadeRegion/map/CascaderArea2d.vue"
 import { useMapStore } from "@/store/useMap.js"
-import { useLayerStore } from "@/views/map2d/LayerStore/layer.js"
+import { useLayerStore } from "@/views/LayerStore/layer.js"
 const layerStore = useLayerStore()
 const mapStore = useMapStore()
-let map = null
-watch(
-    () => mapStore.mapLoadStatus,
-    val => {
-        if (!val) return
-    },
-)
 </script>
 <style scoped lang="less"></style>
