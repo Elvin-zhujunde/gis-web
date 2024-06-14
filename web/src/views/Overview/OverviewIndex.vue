@@ -49,10 +49,10 @@ import Panel from "@/components/Panel/AutoHightPanel.vue"
 import BoxPanel from "@/components/Panel/BoxPanel.vue"
 import Pie from "@/components/echarts/pie/pie_1/index.vue"
 import MixLineBar from "@/components/echarts/MixLineBar.vue"
-import CascadeRegion from "@/views/CascadeRegion/CascadeRegion"
-import LayerTree from "@/views/Overview/LayerTree/LayerTree.vue"
-import MapControl from "@/views/MapControl/MapControl.vue"
-import { useMapStore } from "../../store/useMap"
+import CascadeRegion from "./CascadeRegion/CascadeRegion"
+import LayerTree from "./LayerTree/LayerTree.vue"
+import MapControl from "./MapControl/MapControl.vue"
+import { useMapStore } from "@/store/useMap"
 const mapStore = useMapStore()
 
 const state = reactive({

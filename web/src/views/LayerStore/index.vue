@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import LayerManger from "@/views/map2d/LayerStore/LayerManger.vue"
+import LayerManger from "@/views/LayerStore/LayerManger.vue"
 </script>
 
 <style scoped lang="less"></style>

@@ -33,7 +33,7 @@ const routes = [
             // },
             {
                 path: "/layers",
-                component: () => import("@/views/map2d/LayerStore/index.vue"),
+                component: () => import("@/views/LayerStore/index.vue"),
                 meta: {
                     title: "Place",
                     describe: "记录我关于地点的图层",

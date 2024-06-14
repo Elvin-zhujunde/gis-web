@@ -5,17 +5,15 @@
     </template>
     <MapLayout>
         <template v-if="mapStore.mapLoadStatus">
-            <CascaderArea2d v-if="layerStore.cascaderLayerStatus" />
+            <CascaderArea2d v-if="mapStore.cascaderLayerStatus" />
         </template>
     </MapLayout>
 </template>
 
 <script setup>
 import MapLayout from "./map2d-layout.vue"
-import CascaderArea2d from "@/views/CascadeRegion/map/CascaderArea2d.vue"
+import CascaderArea2d from "@/views/Overview/CascadeRegion/map/CascaderArea2d.vue"
 import { useMapStore } from "@/store/useMap.js"
-import { useLayerStore } from "@/views/LayerStore/layer.js"
-const layerStore = useLayerStore()
 const mapStore = useMapStore()
 </script>
 <style scoped lang="less"></style>

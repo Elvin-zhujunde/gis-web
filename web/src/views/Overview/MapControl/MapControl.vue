@@ -26,7 +26,7 @@
 
 <script setup>
 import { computed, onMounted, onUnmounted } from "vue"
-import { useMapStore } from "../../store/useMap"
+import { useMapStore } from "@/store/useMap"
 let currentCenter = ref("") //获取地图中心点
 let currentZoom = ref("") //获取地图级别
 let mapStore = useMapStore()

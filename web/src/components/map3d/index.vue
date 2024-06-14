@@ -11,7 +11,7 @@
 <script setup>
 import Map3dLayout from "./map3d-layout.vue"
 
-import CascaderArea3d from "@/views/CascadeRegion/map/CascaderArea3d.vue"
+import CascaderArea3d from "@/views/Overview/CascadeRegion/map/CascaderArea3d.vue"
 import { useMapStore } from "@/store/useMap.js"
 
 const mapStore = useMapStore()
