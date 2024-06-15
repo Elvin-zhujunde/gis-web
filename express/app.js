@@ -40,7 +40,7 @@ app.use(function (err, req, res, next) {
   res.status(500).send(err.message);
 });
 
-server.listen(3000, "0.0.0.0", () => {
+server.listen(4000, "0.0.0.0", () => {
   console.log(`🚀 Server ready `);
 });
 

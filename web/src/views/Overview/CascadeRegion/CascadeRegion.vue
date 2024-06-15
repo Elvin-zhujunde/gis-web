@@ -40,8 +40,10 @@ watch(cascader_vmodel, async val => {
 
     let adcode = val[val.length - 1]
 
-    mapStore.cascaer_geo_data = await (
-        await fetch(`https://geo.datav.aliyun.com/areas_v3/bound/${adcode}_full.json`, {})
-    ).json()
+    mapStore.cascaer_geo_data = await fetch(`http://121.36.68.180:4000/geojson/${adcode}.json`, {}).then(res =>
+        res.json(),
+    )
+    debugger
+    // await fetch(`https://geo.datav.aliyun.com/areas_v3/bound/${adcode}_full.json`, {})
 })
 </script>
