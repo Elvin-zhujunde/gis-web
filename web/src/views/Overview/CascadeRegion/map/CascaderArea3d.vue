@@ -11,6 +11,8 @@ let CASCADE_DATASOURCE = null
 function renderPolygon(geojson, zoomto = true) {
     const viewer = window.viewer
     const dataSource = new Cesium.GeoJsonDataSource()
+    let provinceMap = new Map()
+
     dataSource
         .load(geojson, {
             clampToGround: true,
@@ -18,8 +20,7 @@ function renderPolygon(geojson, zoomto = true) {
         .then(val => {
             viewer.dataSources.add(dataSource)
             const entities = dataSource.entities.values
-            for (let i = 0; i < entities.length; i++) {
-                const entity = entities[i]
+            entities.forEach((entity, i) => {
                 entity.polygon.material = Cesium.Color.fromCssColorString("#fff").withAlpha(0)
                 entity.polyline = {
                     positions: entity.polygon.hierarchy._value.positions,
@@ -27,20 +28,25 @@ function renderPolygon(geojson, zoomto = true) {
                     material: Cesium.Color.fromCssColorString("#689fd2"),
                 }
                 const center = Cesium.BoundingSphere.fromPoints(entity.polygon.hierarchy._value.positions).center
-                entity.position = center
-                console.log(entity)
-                entity.label = {
-                    text: entity.properties.name,
-                    color: Cesium.Color.fromCssColorString("#fff"),
-                    font: "normal 32px MicroSoft YaHei",
-                    showBackground: true,
-                    scale: 0.5,
-                    horizontalOrigin: Cesium.HorizontalOrigin.LEFT_CLICK,
-                    verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
-                    disableDepthTestDistance: 10000.0,
-                    enableCollisionDetection: true,
+                // @@自定义属性 name 取决于geojson中的name字段
+                const provinceName = entity.properties.getValue().name
+                // 用于是否已经添加过标签
+                if (!provinceMap.get(provinceName)) {
+                    entity.label = {
+                        text: provinceName,
+                        color: Cesium.Color.fromCssColorString("#fff"),
+                        font: "normal 32px MicroSoft YaHei",
+                        showBackground: true,
+                        scale: 0.5,
+                        horizontalOrigin: Cesium.HorizontalOrigin.LEFT_CLICK,
+                        verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+                        disableDepthTestDistance: 10000.0,
+                        enableCollisionDetection: true,
+                    }
+                    provinceMap.set(provinceName, 1)
                 }
-            }
+                entity.position = center
+            })
             const z = [10000000, 1000000, 800000][mapStore.cascader_vmodel?.length - 1]
             const [x, y] = turf.center(geojson).geometry.coordinates
             mapStore.flyPoi = { x, y, z }
