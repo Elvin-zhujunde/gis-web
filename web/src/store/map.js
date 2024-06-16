@@ -14,6 +14,7 @@ export const useMapStore = defineStore({
 
         // 行政区划
         cascader_vmodel: [], // overview - 行政区划选择树绑定值
+        current_cascader: null, // overview - 当前行政区划
         cascader_max_level: 3, // overview - 行政区划选择树绑定值数组length最大值，用来限制选择树的最大层级
         cascader_option_source: areaTree, // 行政区划选择树的数据源
         cascaer_geo_data: null,

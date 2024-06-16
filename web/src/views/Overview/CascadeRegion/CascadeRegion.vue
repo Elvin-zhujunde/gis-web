@@ -3,6 +3,7 @@
         v-model:value="cascader_vmodel"
         :options="mapStore.cascader_option_source"
         style="width: 100%"
+        @change="onTreeSelectChange"
         expand-trigger="hover"
         :field-names="{ value: 'code' }"
         :getPopupContainer="triggerNode => triggerNode.parentNode"
@@ -32,18 +33,29 @@ import { useMapStore } from "@/store/map"
 const mapStore = useMapStore()
 const { cascader_vmodel } = storeToRefs(mapStore)
 
+function onTreeSelectChange(value, label, extra) {
+    console.log(value, label, extra)
+}
 watch(cascader_vmodel, async val => {
     if (!val) {
         mapStore.cascaer_geo_data = null
         return
     }
-
     let adcode = val[val.length - 1]
-
-    mapStore.cascaer_geo_data = await fetch(`http://121.36.68.180:4000/geojson/${adcode}.json`, {}).then(res =>
-        res.json(),
-    )
-    debugger
-    // await fetch(`https://geo.datav.aliyun.com/areas_v3/bound/${adcode}_full.json`, {})
+    mapStore.current_cascader = {
+        level: val.length,
+        adcode,
+    }
 })
+
+watch(
+    () => mapStore.current_cascader,
+    async ({ adcode, level }) => {
+        console.log("current_cascaer")
+
+        mapStore.cascaer_geo_data = await fetch(`http://121.36.68.180:4000/geojson/${adcode}.json`, {}).then(res =>
+            res.json(),
+        )
+    },
+)
 </script>

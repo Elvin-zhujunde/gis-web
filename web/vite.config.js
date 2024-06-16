@@ -70,6 +70,7 @@ export default defineConfig(({ mode }) => {
             },
             reportCompressedSize: false,
         },
+
         plugins: [
             vue(),
             vueJsx(),
@@ -115,6 +116,13 @@ export default defineConfig(({ mode }) => {
                 "vue-router",
                 "ant-design-vue/es", //
                 "@vueuse/core",
+                "@amap/amap-jsapi-loader",
+                "@turf/turf",
+                "ant-design-vue",
+                "cesium",
+                "echarts",
+                "lodash",
+                "md-editor-v3",
             ],
         },
         server: {
