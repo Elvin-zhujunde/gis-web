@@ -62,7 +62,6 @@ const initCesium = async () => {
     })
     initHandle(viewer)
     mapStore.mapLoadStatus = true
-
 }
 
 function initHandle(viewer) {
@@ -92,9 +91,12 @@ onMounted(initCesium)
 onBeforeMount(destroyCesium)
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .cesium-container {
     width: 100%;
     height: 100%;
+    ::v-deep(.cesium-viewer-toolbar) {
+        z-index: 1000;
+    }
 }
 </style>

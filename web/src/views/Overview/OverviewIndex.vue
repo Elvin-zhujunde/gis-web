@@ -21,7 +21,7 @@
     <PanelRight>
         <BoxPanel
             style="height: 50%"
-            title="123"
+            title="三维无效的话切换一下底图 --->"
         >
             <Pie
                 id="pie_type"

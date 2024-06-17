@@ -61,7 +61,7 @@ onMounted(async () => {
     })
 })
 onUnmounted(async () => {
-    map && map.map.destroy()
+    map && map.destroy()
 })
 // const changeMap = (x, y) => {
 //     let position = new map.AMap.LngLat(x, y) // 标准写法
