@@ -21,7 +21,7 @@
     <PanelRight>
         <BoxPanel
             style="height: 50%"
-            title="三维无效的话切换一下底图 --->"
+            title="统计"
         >
             <Pie
                 id="pie_type"
@@ -56,40 +56,37 @@ import { useMapStore } from "@/store/map"
 const mapStore = useMapStore()
 
 const state = reactive({
-    options: [
-        {
-            name: "人口",
-            value: 1,
-        },
-        {
-            name: "房屋",
-            value: 2,
-        },
-        {
-            name: "企业",
-            value: 3,
-        },
-        {
-            name: "地址",
-            value: 4,
-        },
-        {
-            name: "事件",
-            value: 4,
-        },
-    ],
+    options: computed(() => {
+        const arr = ["人口", "房屋", "企业", "设施", "地址", "事件"]
+        if (mapStore.current_cascader) {
+            const { level } = mapStore.current_cascader
+            return arr.map(name => {
+                return {
+                    name,
+                    value: Math.floor((Math.random() * 100000) / level + 10000),
+                }
+            })
+        } else {
+            return arr.map(name => {
+                return {
+                    name,
+                    value: Math.floor(Math.random() * 100000 + 10000),
+                }
+            })
+        }
+    }),
     colors: ["#F09E43", "#51ffef", "#2443BF", "#BF4773", "#4AA2FF", "#C6DE63", "#5BB1FF"],
 })
 
 watch(
     () => mapStore.current_cascader,
     () => {
-        state.options = state.options.map(i => {
-            return {
-                name: i.name,
-                value: Math.floor(Math.random() * 10000),
-            }
-        })
+        // state.options = state.options.map(i => {
+        //     return {
+        //         name: i.name,
+        //         value: Math.floor(Math.random() * 10000),
+        //     }
+        // })
     },
 )
 </script>
