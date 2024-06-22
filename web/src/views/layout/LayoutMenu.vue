@@ -38,7 +38,6 @@ import $config from "@/const"
 const route = useRoute()
 const router = useRouter()
 
-console.log(route, "@@@@@@@@@@@@@@@@")
 const searchState = reactive({
     current: {},
     options: [],
@@ -51,13 +50,7 @@ const menuState = reactive({
     options: [
         {
             label: "大屏展示",
-            dataIndex: "isShowLayerManger",
             route: "/overview",
-        },
-        {
-            label: "图层管理",
-            key: "isShowLayerManger",
-            route: "/layers",
         },
     ],
     onClickMenu(menu) {

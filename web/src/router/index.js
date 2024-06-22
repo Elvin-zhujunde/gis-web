@@ -29,22 +29,8 @@ const routes = [
     },
     {
         path: "/layout",
-        component: () => import("@/views/layout/layout.vue"),
+        component: () => import("@/views/Layout/Layout.vue"),
         children: [
-            // {
-            //     path: "/map2d",
-            //     component: () => import("@/views/map2d/index.vue"),
-            //     children: []s,
-            //     redirect: "/layers",
-            // },
-            {
-                path: "/layers",
-                component: () => import("@/views/LayerStore/index.vue"),
-                meta: {
-                    title: "Place",
-                    describe: "记录我关于地点的图层",
-                },
-            },
             {
                 path: "/overview",
                 component: () => import("@/views/Overview/OverviewIndex.vue"),

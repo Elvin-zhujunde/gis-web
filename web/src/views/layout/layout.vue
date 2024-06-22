@@ -1,15 +1,11 @@
 <template>
     <div class="layout">
         <div class="layout-header">
-            <Menu></Menu>
+            <LayoutMenu></LayoutMenu>
         </div>
         <div class="layout-content">
-            <template v-if="mapStore.mapMode == '2d'">
-                <Map2d></Map2d>
-            </template>
-            <template v-if="mapStore.mapMode == '3d'">
-                <Map3d></Map3d>
-            </template>
+            <Map2d v-if="mapStore.mapMode == '2d'"></Map2d>
+            <Map3d v-if="mapStore.mapMode == '3d'"></Map3d>
         </div>
         <!-- 全局配置的一些组件 -->
         <GobalComponents></GobalComponents>
@@ -17,7 +13,7 @@
 </template>
 
 <script setup>
-import Menu from "./menu.vue"
+import LayoutMenu from "./LayoutMenu.vue"
 import GobalComponents from "./GobalComponents.vue"
 import Map2d from "@/components/map2d/index.vue"
 import Map3d from "@/components/map3d/index.vue"

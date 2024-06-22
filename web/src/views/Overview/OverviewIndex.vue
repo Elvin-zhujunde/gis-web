@@ -59,7 +59,7 @@ const state = reactive({
     options: computed(() => {
         const arr = ["人口", "房屋", "企业", "设施", "地址", "事件"]
         if (mapStore.current_cascader) {
-            const { level } = mapStore.current_cascader
+            const { level = 1 } = mapStore.current_cascader
             return arr.map(name => {
                 return {
                     name,

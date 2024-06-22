@@ -1,5 +1,4 @@
 import store from "@/store"
-import { defineStore } from "pinia"
 import AMapLoader from "@amap/amap-jsapi-loader"
 import { onMounted, onUnmounted } from "vue"
 import { areaTree } from "@/views/Overview/CascadeRegion/cascaedArea.json"

@@ -84,7 +84,8 @@ export default defineConfig(({ mode }) => {
                     // "vuex",
                     // "@vueuse/core",
                     // "@vueuse/head",
-                    // "pinia",
+                    "pinia",
+                    // "lodash",
                     // "vue-i18n",
                     // "vue-i18n-ts",
                     {
