@@ -9,13 +9,7 @@ if (process.env.NODE_ENV === "development") {
   });
 }
 // 项目信息
-router.get(
-  "/",
-  async (req, res, next) => {
-    next();
-  },
-  controller.test.test
-);
+router.get("/getRandomPois", controller.random.getRandomPois);
 
 // 文件
 // router.get('/files/launchEditor', controller.files.launchEditor)

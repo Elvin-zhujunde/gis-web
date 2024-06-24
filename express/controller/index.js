@@ -1,5 +1,5 @@
-const test = require('./test')
+const random = require("./random");
 
 module.exports = {
-    test
+  random,
 };

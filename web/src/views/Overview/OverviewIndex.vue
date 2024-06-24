@@ -30,7 +30,7 @@
                 :itemBorderWidth="0"
                 :showTitle="true"
                 :total="state.total"
-                titleText="事件类型"
+                titleText="一标四实"
             />
         </BoxPanel>
         <BoxPanel
