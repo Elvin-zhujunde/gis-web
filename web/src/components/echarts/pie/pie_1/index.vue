@@ -149,8 +149,8 @@ function initChart() {
                     color: "rgba(255,255,255)",
                 },
                 // orient: 'vertical',
-                top: "77%",
-                width: "90%",
+                top: "90%",
+                width: "100%",
                 icon: "circle",
                 itemWidth: 8,
                 itemHeight: 8,
@@ -215,7 +215,7 @@ function initChart() {
                             shape: {
                                 cx: api.getWidth() / 2,
                                 cy: api.getHeight() / 2.38,
-                                r: (Math.min(api.getWidth(), api.getHeight()) / 2) * 0.545,
+                                r: (Math.min(api.getWidth(), api.getHeight()) / 2) * 0.745,
                             },
                             style: {
                                 stroke: "#4F5971",
@@ -238,7 +238,7 @@ function initChart() {
                             shape: {
                                 cx: api.getWidth() / 2,
                                 cy: api.getHeight() / 2.38,
-                                r: (Math.min(api.getWidth(), api.getHeight()) / 2) * 0.23,
+                                r: (Math.min(api.getWidth(), api.getHeight()) / 2) * 0.33,
                             },
                             style: {
                                 stroke: "#4F5971",
@@ -252,7 +252,7 @@ function initChart() {
                 },
                 {
                     type: "pie",
-                    radius: ["26%", "52%"],
+                    radius: ["36%", "72%"],
                     center: ["50%", "42%"],
                     avoidLabelOverlap: false,
                     minAngle: 10,

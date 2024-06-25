@@ -19,26 +19,36 @@
         </Panel>
     </PanelLeft>
     <PanelRight>
-        <BoxPanel
-            style="height: 50%"
-            title="统计"
-        >
-            <Pie
-                id="pie_type"
-                :options="state.options"
-                :colors="state.colors"
-                :itemBorderWidth="0"
-                :showTitle="true"
-                :total="state.total"
-                titleText="一标四实"
-            />
-        </BoxPanel>
-        <BoxPanel
-            style="height: 50%"
-            title="234"
-        >
-            <MixLineBar></MixLineBar>
-        </BoxPanel>
+        <Panel>
+            <template #header>
+                <BoxPanel
+                    style="height: 200px"
+                    title="number"
+                ></BoxPanel>
+            </template>
+            <template #default>
+                <BoxPanel
+                    style="height: 300px"
+                    title="一标四实"
+                >
+                    <Pie
+                        id="pie_type"
+                        :options="state.options"
+                        :colors="state.colors"
+                        :itemBorderWidth="0"
+                        :showTitle="true"
+                        :total="state.total"
+                        titleText="一标四实"
+                    />
+                </BoxPanel>
+                <BoxPanel
+                    style="height: 350px"
+                    title="统计"
+                >
+                    <CubBar></CubBar>
+                </BoxPanel>
+            </template>
+        </Panel>
     </PanelRight>
 </template>
 
@@ -48,7 +58,8 @@ import PanelRight from "@/components/panel/PanelRight.vue"
 import Panel from "@/components/Panel/AutoHightPanel.vue"
 import BoxPanel from "@/components/Panel/BoxPanel.vue"
 import Pie from "@/components/echarts/pie/pie_1/index.vue"
-import MixLineBar from "@/components/echarts/MixLineBar.vue"
+import CubBar from "@/components/echarts/bar/bar2.vue"
+import MixLineBar from "@/components/echarts/line/MixLineBar.vue"
 import CascadeRegion from "./CascadeRegion/CascadeRegion"
 import LayerTree from "./LayerTree/LayerTree.vue"
 import MapControl from "./MapControl/MapControl.vue"

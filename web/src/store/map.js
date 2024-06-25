@@ -17,33 +17,31 @@ export const useMapStore = defineStore({
         cascader_max_level: 3, // overview - 行政区划选择树绑定值数组length最大值，用来限制选择树的最大层级
         cascader_option_source: areaTree, // 行政区划选择树的数据源
         cascaer_geo_data: null,
-        cascader_show_status: true,
 
-        loadedLayerNameList: [], // 处理图层的互斥事件
+        // 图层树
+        layerTreeData: [
+            {
+                key: "1",
+                title: "1",
+                children: [
+                    {
+                        key: "1-1",
+                        title: "1-1",
+                    },
+                    {
+                        key: "1-2",
+                        title: "1-2",
+                    },
+                ],
+            },
+        ],
+        checkedLayerList: [], // 选中的图层
+        loadedLayerMap: new Map(), // 加载的图层
     }),
     getters: {},
     actions: {
         setMapMode(mapMode) {
             this.mapMode = mapMode
-        },
-        addloadedLayerNameList(val) {
-            if (Array.isArray(val)) {
-                val.forEach(item => {
-                    if (!this.loadedLayerNameList.includes(item)) {
-                        this.loadedLayerNameList.push(item)
-                    }
-                })
-            }
-            if (typeof val === "string") {
-                if (this.loadedLayerNameList.includes(val)) return
-                this.loadedLayerNameList.push(val)
-            }
-        },
-        setloadedLayerNameList(val) {
-            this.loadedLayerNameList = val
-        },
-        removeloadedLayerNameList(val) {
-            this.loadedLayerNameList = this.loadedLayerNameList.filter(item => item !== val)
         },
     },
 })
