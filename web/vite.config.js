@@ -68,6 +68,16 @@ export default defineConfig(({ mode }) => {
                     drop_debugger: true,
                 },
             },
+            rollupOptions: {
+                output: {
+                    // manualChunks(id) {
+                    //     console.log(id)
+                    //     if (id.includes("lodash-es")) return "lodash-es"
+                    //     if (id.includes("ant-design-vue")) return "ant-design-vue"
+                    //     if (id.includes("echarts")) return "echarts"
+                    // },
+                },
+            },
             reportCompressedSize: false,
         },
 

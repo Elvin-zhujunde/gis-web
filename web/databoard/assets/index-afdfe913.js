@@ -1,1 +1,0 @@
-import{_ as e}from"./_plugin-vue_export-helper-1b428a4d.js";import{k as r,q as n,l as s}from"./index-22c5b6f7.js";const t=e({},[["render",function(e,s){return r(),n("div",null,"123")}]]),o={__name:"index",setup:e=>(e,n)=>(r(),s(t))};export{o as default};
