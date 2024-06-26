@@ -4,7 +4,6 @@
 
 <script setup>
 import autofit from "autofit.js"
-import { onBeforeMount } from "vue"
 onMounted(() => {
     // autofit.init({
     //     dh: 960, // 设计稿高度
