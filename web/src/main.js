@@ -6,7 +6,9 @@ import router from "./router/index"
 import Antd from "ant-design-vue"
 import "ant-design-vue/dist/reset.css"
 import "@/styles/index.less"
-
+import * as GobalTools from "./tool/GobalTool"
+console.log(GobalTools)
+window._tool = GobalTools
 // import { init } from "./store/map"
 // init()
 const pinia = createPinia()

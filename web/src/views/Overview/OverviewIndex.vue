@@ -45,7 +45,14 @@
                     style="height: 350px"
                     title="统计"
                 >
-                    <CubBar></CubBar>
+                    <Map2Bar
+                        v-if="mapStore.cascaer_geo_data != null"
+                        :dataSource="mapStore.cascaer_geo_data"
+                    />
+                    <a-empty
+                        style="margin-top: 20%"
+                        v-else
+                    />
                 </BoxPanel>
             </template>
         </Panel>
@@ -58,7 +65,7 @@ import PanelRight from "@/components/panel/PanelRight.vue"
 import Panel from "@/components/Panel/AutoHightPanel.vue"
 import BoxPanel from "@/components/Panel/BoxPanel.vue"
 import Pie from "@/components/echarts/pie/pie_1/index.vue"
-import CubBar from "@/components/echarts/bar/bar2.vue"
+import Map2Bar from "@/components/echarts/map2Bar.vue"
 import MixLineBar from "@/components/echarts/line/MixLineBar.vue"
 import CascadeRegion from "./CascadeRegion/CascadeRegion"
 import LayerTree from "./LayerTree/LayerTree.vue"
@@ -66,6 +73,7 @@ import MapControl from "./MapControl/MapControl.vue"
 import { useMapStore } from "@/store/map"
 const mapStore = useMapStore()
 
+let { isEmpty } = window._tool
 const state = reactive({
     options: computed(() => {
         const arr = ["人口", "房屋", "企业", "设施", "地址", "事件"]

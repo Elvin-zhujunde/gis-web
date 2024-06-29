@@ -67,15 +67,18 @@ const initCesium = async () => {
 function initHandle(viewer) {
     const handle = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas)
     handle.setInputAction(function (click) {
-        const pickedObject = viewer.scene.pick(click.position)
-        debugger
-        // const attr = pickedObject.primitive.getGeometryInstanceAttributes(pickedObject.id)
-        // const color = attr.color
+        const picked = viewer.scene.pick(click.position)
+        if (picked?.id?.billboard) {
+            debugger
+        }
         // 处理点击事件
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK)
 
     handle.setInputAction(function (movement) {
-        const pickedObject = viewer.scene.pick(movement.endPosition)
+        const picked = viewer.scene.pick(movement.endPosition)
+        const clickable = _tool.isEmpty(picked?.id?.billboard)
+        document.body.style.cursor = clickable ? "default" : "pointer"
+
         // 处理移动事件
     }, Cesium.ScreenSpaceEventType.MOUSE_MOVE)
 }
@@ -83,9 +86,6 @@ function destroyCesium() {
     viewer && viewer.destroy()
 }
 
-function createBillboard(geojson) {
-    turf.center
-}
 // 组件挂载后初始化Cesium
 onMounted(initCesium)
 onBeforeMount(destroyCesium)

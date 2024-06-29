@@ -19,7 +19,7 @@ function numFormat(num) {
 const props = defineProps({
     id: {
         type: String,
-        default: "analysisPie",
+        default: "map2Bar",
     },
     width: {
         type: String,

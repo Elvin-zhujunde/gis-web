@@ -61,7 +61,6 @@ function createAreaLayer(geojson) {
                 })
                 polygon.on("click", () => {
                     const cascaderValue = [...geo.properties.acroutes, Number(geo.properties.adcode)]
-                    debugger
                     if (cascaderValue.length > mapStore.cascader_max_level) {
                         alert("已达到最大层级")
                         return
