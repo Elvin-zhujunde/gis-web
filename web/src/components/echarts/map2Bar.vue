@@ -13,7 +13,6 @@ import { onBeforeUnmount } from "vue"
 
 import dataSource from "/public/json/china.json"
 let myChart
-let interVal
 const props = defineProps({
     id: {
         type: String,
@@ -161,10 +160,10 @@ function initChart() {
     }
     let currentOption = mapOption
     myChart.setOption(mapOption)
-    interVal = setInterval(function () {
+    myChart.on("click", function (params) {
         currentOption = currentOption === mapOption ? barOption : mapOption
         myChart.setOption(currentOption, true)
-    }, 2000)
+    })
 
     // myChart.setOption(123, true)
     window.addEventListener("resize", function () {
@@ -172,8 +171,6 @@ function initChart() {
     })
 }
 
-onBeforeUnmount(() => {
-    interVal && clearInterval(interVal)
-})
+onBeforeUnmount(() => {})
 </script>
 <style scoped lang="less"></style>

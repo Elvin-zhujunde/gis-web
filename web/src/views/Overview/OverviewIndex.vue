@@ -24,7 +24,10 @@
                 <BoxPanel
                     style="height: 200px"
                     title="number"
-                ></BoxPanel>
+                >
+                
+                
+                </BoxPanel>
             </template>
             <template #default>
                 <BoxPanel
@@ -43,7 +46,7 @@
                 </BoxPanel>
                 <BoxPanel
                     style="height: 350px"
-                    title="统计"
+                    title="统计(可点击)"
                 >
                     <Map2Bar
                         v-if="mapStore.cascaer_geo_data != null"
