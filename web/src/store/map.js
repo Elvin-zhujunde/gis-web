@@ -25,14 +25,14 @@ export const useMapStore = defineStore({
                 title: "1",
                 children: [
                     {
-                        key: "1-1",
-                        title: "1-1",
-                    },
-                    {
                         key: "1-2",
                         title: "1-2",
                     },
                 ],
+            },
+            {
+                key: "1-1",
+                title: "随机点图层",
             },
         ],
         checkedLayerList: [], // 选中的图层

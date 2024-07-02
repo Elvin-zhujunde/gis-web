@@ -24,10 +24,7 @@
                 <BoxPanel
                     style="height: 200px"
                     title="number"
-                >
-                
-                
-                </BoxPanel>
+                ></BoxPanel>
             </template>
             <template #default>
                 <BoxPanel

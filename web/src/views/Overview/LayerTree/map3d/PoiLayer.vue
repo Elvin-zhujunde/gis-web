@@ -2,8 +2,7 @@
 <template></template>
 
 <script setup>
-import { getRandomPoint } from "@/tool/useTurf"
-import chinajson from "/public/json/china.json"
+import { getGeojsonById } from "@/api"
 import poi_default from "/public/assets/img/poi_circle_fill.png"
 
 let DATA_SOURCE = null
@@ -26,7 +25,6 @@ function createPoiLayer(geojsonData) {
 
         for (let i = 0; i < entities.length; i++) {
             let entity = entities[i]
-            console.log(entity)
             // 可以在这里设置点的样式，例如点的颜色、大小等
             entity.billboard.color = Cesium.Color.fromCssColorString("#fff")
             entity.billboard.image = poi_default
@@ -40,7 +38,7 @@ onBeforeUnmount(() => {
     DATA_SOURCE = null
 })
 onMounted(async () => {
-    const geosjon = await getRandomPoint(chinajson, 100)
+    const geosjon = await getGeojsonById(props.id)
     createPoiLayer(geosjon)
 })
 </script>

@@ -25,8 +25,9 @@ import pxtovw from "postcss-px-to-viewport"
 
 // import viteCompression from "vite-plugin-compression" // 代码压缩
 // import removeConsole from "vite-plugin-remove-console" // 生产环境移除console
-
 // https://vitejs.dev/config/
+
+
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd(), "")
     return {
