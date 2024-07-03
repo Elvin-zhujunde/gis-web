@@ -69,7 +69,6 @@ function initHandle(viewer) {
     handle.setInputAction(function (click) {
         const picked = viewer.scene.pick(click.position)
         if (picked?.id?.billboard) {
-            debugger
         }
         // 处理点击事件
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK)

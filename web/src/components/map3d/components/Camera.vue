@@ -9,7 +9,7 @@ const mapStore = useMapStore()
 
 const { flyPoi, flyArea } = storeToRefs(mapStore)
 watch(flyPoi, val => {
-    const { x, y, z } = val
+    const { x, y, z, opt = {} } = val
     if (!x || !y || !z) return
 
     viewer.camera.flyTo({
@@ -19,6 +19,7 @@ watch(flyPoi, val => {
             pitch: Cesium.Math.toRadians(-90),
             roll: 0.0,
             distance: 1000,
+            ...opt,
         },
     })
 })

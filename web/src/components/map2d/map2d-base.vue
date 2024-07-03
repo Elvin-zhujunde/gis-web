@@ -50,7 +50,6 @@ onMounted(async () => {
     mapStore.contextMenu = new AMap.ContextMenu()
 
     map.on("rightclick", function (e) {
-        debugger
     })
     // 清除 marker
     function clearMarker() {

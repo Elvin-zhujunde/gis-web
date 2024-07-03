@@ -22,17 +22,17 @@ export const useMapStore = defineStore({
         layerTreeData: [
             {
                 key: "1",
-                title: "1",
+                title: "随机",
                 children: [
                     {
-                        key: "1-2",
-                        title: "1-2",
+                        key: "randomPoint",
+                        title: "随机点图层",
+                    },
+                    {
+                        key: "randomPolygon",
+                        title: "随机面图层",
                     },
                 ],
-            },
-            {
-                key: "1-1",
-                title: "随机点图层",
             },
         ],
         checkedLayerList: [], // 选中的图层
