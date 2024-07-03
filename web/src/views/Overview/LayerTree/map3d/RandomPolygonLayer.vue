@@ -2,8 +2,7 @@
 <template></template>
 
 <script setup>
-import { getGeojsonById } from "@/api"
-import * as turf from "@turf/turf"
+
 import { useMapStore } from "@/store/map.js"
 
 const mapStore = useMapStore()
@@ -62,7 +61,7 @@ onBeforeUnmount(() => {
     DATA_SOURCE = null
 })
 onMounted(async () => {
-    const geosjon = await getGeojsonById(props.id)
+    const geosjon = await (props.id)
     renderPolygon(geosjon)
 })
 </script>

@@ -4,7 +4,7 @@
 </template>
 
 <script setup>
-import * as turf from "@turf/turf"
+
 import { useMapStore } from "@/store/map"
 const mapStore = useMapStore()
 let CASCADE_DATASOURCE = null

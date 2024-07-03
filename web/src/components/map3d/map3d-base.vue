@@ -7,7 +7,7 @@
 
 <script setup>
 import { ref, onMounted, onBeforeMount } from "vue"
-import * as turf from "@turf/turf"
+
 import { useMapStore } from "@/store/map"
 Cesium.Ion.defaultAccessToken =
     // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmYjFhOGQ5My0zNjc4LTRhNzUtODgyMC02Y2UwNzE0Y2UyM2IiLCJpZCI6MjExNTEwLCJpYXQiOjE3MTQxMjI4ODR9.f4FQYls56qNjRQvoQpKFeMOO0yewLxp0oU4oq9AM9pg"

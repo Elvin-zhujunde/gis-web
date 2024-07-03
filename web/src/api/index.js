@@ -7,6 +7,12 @@ export const getGeojsonById = async (id, num) => {
             return await getRandomPoint(chinajson, num || 100)
         case "randomPolygon":
             return await getRandomPolygon(chinajson, num || 1)
+        case "imgcluster":
+            return await getRandomPolygon(chinajson, num || 1)
+        case "CircularSweepingCity":
+            return await getRandomPolygon(chinajson, num || 1)
+        case "LineWall":
+            return await getRandomPolygon(chinajson, num || 1)
 
         default:
             break

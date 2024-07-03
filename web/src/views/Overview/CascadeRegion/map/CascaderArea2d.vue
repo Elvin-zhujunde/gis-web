@@ -1,6 +1,6 @@
 <template></template>
 <script setup>
-import * as turf from "@turf/turf"
+
 import { useMapStore } from "@/store/map"
 const mapStore = useMapStore()
 
@@ -79,11 +79,6 @@ function createAreaLayer(geojson) {
         map.add(GEOJSON_LAYER) // 将GeoJSON图层添加到地图上
     })
 }
-function fitView(geojson) {
-    if (!geojson) return
-    const [zoom, { lng, lat }] = map.getFitZoomAndCenterByBounds(turf.bbox(geojson))
-    map.setZoomAndCenter(zoom - 0.5, [lng, lat])
-}
 
 function getAreaCenter(geojson) {
     return {
@@ -109,7 +104,7 @@ watch(
             return
         }
         GEOJSON_LAYER ? GEOJSON_LAYER.importData(val) : createLayer(val)
-        fitView(val)
+        mapStore.flyArea = val
     },
     {
         immediate: true,

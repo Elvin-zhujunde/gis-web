@@ -5,15 +5,15 @@
     </template>
     <Map3dLayout>
         <CascaderArea3d></CascaderArea3d>
-        <Camera/>
-        <LayerTree/>
+        <Camera />
+        <LayerTree />
     </Map3dLayout>
 </template>
 
 <script setup>
 import Map3dLayout from "./map3d-layout.vue"
 import Camera from "./components/Camera.vue"
-import LayerTree from '@/views/Overview/LayerTree/map3d/index.vue'
+import LayerTree from "@/views/Overview/LayerTree/map3d/index.vue"
 import CascaderArea3d from "@/views/Overview/CascadeRegion/map/CascaderArea3d.vue"
 import { useMapStore } from "@/store/map.js"
 

@@ -2,7 +2,6 @@
 <template></template>
 
 <script setup>
-import { getGeojsonById } from "@/api"
 import poi_default from "/public/assets/img/poi_circle_fill.png"
 
 let DATA_SOURCE = null
@@ -38,7 +37,7 @@ onBeforeUnmount(() => {
     DATA_SOURCE = null
 })
 onMounted(async () => {
-    const geosjon = await getGeojsonById(props.id)
+    const geosjon = await _api.getGeojsonById(props.id)
     createPoiLayer(geosjon)
 })
 </script>

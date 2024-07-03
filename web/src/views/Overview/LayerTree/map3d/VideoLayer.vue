@@ -15,7 +15,6 @@
 </template>
 
 <script setup>
-import { getGeojsonById } from "@/api"
 import { useMapStore } from "@/store/map"
 const mapStore = useMapStore()
 let DATA_SOURCE = null

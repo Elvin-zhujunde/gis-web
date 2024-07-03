@@ -13,12 +13,25 @@
         <div class="overview-structure-corner">
             <slot name="corner"></slot>
         </div>
+        <LeftOutlined
+            v-if="!value"
+            @click="toggle()"
+            class="collapse-btn"
+        />
+        <RightOutlined
+            v-else
+            @click="toggle()"
+            class="collapse-btn"
+        />
     </div>
 </template>
 
 <script setup>
-import { ref } from "vue"
+import { LeftOutlined, RightOutlined } from "@ant-design/icons-vue"
 
+import { ref } from "vue"
+const [value, toggle] = useToggle()
+const leftPx = computed(() => (value.value ? "-400px" : "0px"))
 const bigScreen = ref(false)
 // export default {
 //     name: "MainLeftPanel",
@@ -28,7 +41,7 @@ const bigScreen = ref(false)
 <style lang="less" scoped>
 .main-left-panel {
     position: fixed;
-    left: 0;
+    left: v-bind(leftPx);
     top: 55px;
     z-index: 50;
     width: 400px;
@@ -47,6 +60,7 @@ const bigScreen = ref(false)
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(10px);
     border-radius: 8px;
+    transition: 1s;
 }
 .overview-structure-header {
     position: relative;
@@ -60,5 +74,21 @@ const bigScreen = ref(false)
 .overview-structure-panel {
     flex-grow: 1;
     height: 0;
+}
+.collapse-btn {
+    position: absolute;
+    width: 20px;
+    height: 80px;
+    right: -20px;
+    top: 50%;
+    transform: translate(0, -50%);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    cursor: pointer;
 }
 </style>

@@ -27,7 +27,6 @@ import pxtovw from "postcss-px-to-viewport"
 // import removeConsole from "vite-plugin-remove-console" // 生产环境移除console
 // https://vitejs.dev/config/
 
-
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd(), "")
     return {
@@ -71,14 +70,28 @@ export default defineConfig(({ mode }) => {
             },
             rollupOptions: {
                 output: {
-                    // manualChunks(id) {
-                    //     console.log(id)
-                    //     if (id.includes("lodash-es")) return "lodash-es"
-                    //     if (id.includes("ant-design-vue")) return "ant-design-vue"
-                    //     if (id.includes("echarts")) return "echarts"
-                    // },
+                    // 最小化拆分包
+                    manualChunks(id) {
+                        if (id.includes("node_modules")) {
+                            // 通过拆分包的方式将所有来自node_modules的模块打包到单独的chunk中
+                            return id.toString().split("node_modules/")[1].split("/")[0].toString()
+                        }
+                    },
+                    // 设置chunk的文件名格式
+                    chunkFileNames: chunkInfo => {
+                        const facadeModuleId = chunkInfo.facadeModuleId ? chunkInfo.facadeModuleId.split("/") : []
+                        const fileName1 = facadeModuleId[facadeModuleId.length - 2] || "[name]"
+                        // 根据chunk的facadeModuleId（入口模块的相对路径）生成chunk的文件名
+                        return `js/${fileName1}/[name].[hash].js`
+                    },
+                    // 设置入口文件的文件名格式
+                    entryFileNames: "js/[name]-[hash].js",
+                    // 设置静态资源文件的文件名格式
+                    assetFileNames: "[ext]/[name]-[hash].[ext]",
                 },
             },
+
+            // Turning off brotliSize display can slightly reduce packaging time
             reportCompressedSize: false,
         },
 
@@ -110,6 +123,8 @@ export default defineConfig(({ mode }) => {
                         //     // alias
                         //     ["useFetch", "useMyFetch"], // import { useFetch as useMyFetch } from '@vueuse/core',
                         // ],
+
+                        "@turf/turf": [["*", "turf"]],
                         axios: [
                             // default imports
                             ["default", "axios"], // import { default as axios } from 'axios',
@@ -138,9 +153,11 @@ export default defineConfig(({ mode }) => {
                 "md-editor-v3",
             ],
         },
+
         server: {
             host: true, // host设置为true才可以使用network的形式，以ip访问项目
             port: 3000, // 端口号
+            open: true,
             cors: true, // 跨域设置允许
             strictPort: true, // 如果端口已占用直接退出
             // 接口代理

@@ -4,6 +4,9 @@
 </template>
 <script setup>
 import { useMapStore } from "@/store/map"
+import { Scene } from "@antv/l7"
+
+import { GaodeMap } from "@antv/l7-maps"
 
 const mapStore = useMapStore()
 const props = defineProps({
@@ -24,7 +27,12 @@ onMounted(async () => {
         resizeEnable: true,
     })
     map.setMapStyle("amap://styles/dark")
-
+    window.scene = new Scene({
+        id: "map-container",
+        map: new GaodeMap({
+            mapInstance: window.map,
+        }),
+    })
     AMap.plugin(
         ["AMap.ToolBar", "AMap.Scale", "AMap.HawkEye", "AMap.MapType", "AMap.Geolocation", "AMap.ControlBar"],
         function () {
@@ -49,8 +57,7 @@ onMounted(async () => {
     )
     mapStore.contextMenu = new AMap.ContextMenu()
 
-    map.on("rightclick", function (e) {
-    })
+    map.on("rightclick", function (e) {})
     // 清除 marker
     function clearMarker() {
         map.remove(marker)

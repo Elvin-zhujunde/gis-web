@@ -4,7 +4,7 @@
 <script setup>
 import { storeToRefs } from "pinia"
 import { useMapStore } from "@/store/map"
-import * as turf from "@turf/turf"
+
 const mapStore = useMapStore()
 
 const { flyPoi, flyArea } = storeToRefs(mapStore)
