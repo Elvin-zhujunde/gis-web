@@ -46,11 +46,11 @@ function createAreaLayer(data) {
         raisingHeight: 0,
     })
 
-    lineUp = new LineLayer({ zIndex: 1 }).source(data).shape("line").color("#0DCCFF").size(1).style({
-        raisingHeight: 100,
+    lineUp = new LineLayer({ zIndex: 1 }).source(data).shape("line").color("#0DCCFF").size(2).style({
+        raisingHeight: 20000,
     })
 
-    scene.addLayer(lineDown)
+    // scene.addLayer(lineDown)
     scene.addLayer(lineUp)
     lineLayer = new LineLayer().source(data).shape("wall").size(20000).style({
         heightfixed: true,
@@ -134,8 +134,8 @@ function removeLayer() {
 watch(
     () => mapStore.cascaer_geo_data,
     val => {
-        if (!val) return removeLayer()
-
+        removeLayer()
+        if (!val) return
         createLayer(val)
         mapStore.flyArea = val
     },
