@@ -2,7 +2,6 @@
 <template></template>
 
 <script setup>
-
 import { useMapStore } from "@/store/map.js"
 
 const mapStore = useMapStore()
@@ -61,7 +60,7 @@ onBeforeUnmount(() => {
     DATA_SOURCE = null
 })
 onMounted(async () => {
-    const geosjon = await (props.id)
+    const geosjon = await _api.getGeojsonById(props.id)
     renderPolygon(geosjon)
 })
 </script>

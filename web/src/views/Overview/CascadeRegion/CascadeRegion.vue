@@ -51,8 +51,6 @@ watch(cascader_vmodel, async val => {
 watch(
     () => mapStore.current_cascader,
     async ({ adcode, level }) => {
-        console.log("current_cascaer", adcode, level)
-
         mapStore.cascaer_geo_data = await fetch(`http://121.36.68.180:4000/geojson/${adcode}.json`, {}).then(res =>
             res.json(),
         )

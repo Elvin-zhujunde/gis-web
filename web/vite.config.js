@@ -126,7 +126,6 @@ export default defineConfig(({ mode }) => {
 
                         "@turf/turf": [["*", "turf"]],
                         axios: [
-                            // default imports
                             ["default", "axios"], // import { default as axios } from 'axios',
                         ],
                     },

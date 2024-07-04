@@ -4,7 +4,7 @@
 </template>
 <script setup>
 import { useMapStore } from "@/store/map"
-import { Scene } from "@antv/l7"
+import { Scene, MapTheme } from "@antv/l7"
 
 import { GaodeMap } from "@antv/l7-maps"
 
@@ -32,6 +32,10 @@ onMounted(async () => {
         map: new GaodeMap({
             mapInstance: window.map,
         }),
+    })
+    scene.on("loaded", () => {
+        const mapTheme = new MapTheme()
+        scene.addControl(mapTheme)
     })
     AMap.plugin(
         ["AMap.ToolBar", "AMap.Scale", "AMap.HawkEye", "AMap.MapType", "AMap.Geolocation", "AMap.ControlBar"],
