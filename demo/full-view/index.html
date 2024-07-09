@@ -45,15 +45,21 @@
           const queryString = window.location.search;
           const urlParams = new URLSearchParams(queryString);
           const paramValue = urlParams.get("imageUrl");
-
+          let material = new THREE.MeshBasicMaterial({
+            map: new THREE.TextureLoader().load(
+              "http://127.0.0.1:5500/demo/full-view/1.jpg"
+              // paramValue
+            ),
+          });
+          let mesh = new THREE.Mesh(geometry, material);
+          this.scene.add(mesh);
           if (paramValue) {
             let material = new THREE.MeshBasicMaterial({
               map: new THREE.TextureLoader().load(
-                "https://img.zcool.cn/community/01a3a2599c3deba80121ad7b597cab.jpg@1280w_1l_2o_100sh.jpg"
+                "http://127.0.0.1:5500/demo/full-view/1.jpg"
                 // paramValue
               ),
             });
-
             let mesh = new THREE.Mesh(geometry, material);
             this.scene.add(mesh);
           } else {
