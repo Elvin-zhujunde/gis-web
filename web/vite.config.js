@@ -5,7 +5,7 @@ import path from "path"
 import { defineConfig, loadEnv } from "vite"
 import VueSetupExtend from "vite-plugin-vue-setup-extend"
 import AutoImport from "unplugin-auto-import/vite" // 自动导入
-
+import VueDevTools from 'vite-plugin-vue-devtools'
 import pxtovw from "postcss-px-to-viewport"
 // const my_pxtovw = pxtovw({
 //     //这里是设计稿宽度 自己修改
@@ -101,13 +101,12 @@ export default defineConfig(({ mode }) => {
             VueSetupExtend(),
             // viteCompression(),
             // removeConsole(),
+            VueDevTools(),
             AutoImport({
                 imports: [
                     "vue",
                     "vue-router",
-                    // "vuex",
                     "@vueuse/core",
-                    // "@vueuse/head",
                     "pinia",
                     // "lodash",
                     // "vue-i18n",
