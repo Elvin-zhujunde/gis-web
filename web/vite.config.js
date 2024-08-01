@@ -7,6 +7,9 @@ import VueSetupExtend from "vite-plugin-vue-setup-extend"
 import AutoImport from "unplugin-auto-import/vite" // 自动导入
 import VueDevTools from 'vite-plugin-vue-devtools'
 import pxtovw from "postcss-px-to-viewport"
+
+import { templateCompilerOptions } from '@tresjs/core'
+
 // const my_pxtovw = pxtovw({
 //     //这里是设计稿宽度 自己修改
 //     unitToConvert: "px", // 要转化的单位
@@ -96,7 +99,9 @@ export default defineConfig(({ mode }) => {
         },
 
         plugins: [
-            vue(),
+            vue({
+                ...templateCompilerOptions
+            }),
             vueJsx(),
             VueSetupExtend(),
             // viteCompression(),

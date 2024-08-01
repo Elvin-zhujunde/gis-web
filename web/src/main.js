@@ -8,6 +8,7 @@ import "ant-design-vue/dist/reset.css"
 import "@/styles/index.less"
 import * as GobalTools from "./tool/GobalTool"
 import * as api from "@/api/index"
+
 window._tool = GobalTools
 window._api = api
 // import { init } from "./store/map"

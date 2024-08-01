@@ -4,7 +4,7 @@ import { onMounted, onUnmounted } from "vue"
 import { areaTree } from "@/views/Overview/CascadeRegion/cascaedArea.json"
 export const useMapStore = defineStore("MapManger", () => {
     const mapLoadStatus = ref(false) // 地图加载状态 二三维通用，mapMode切换时置false
-    const mapMode = ref("2d") // 地图模式 2d 3d
+    const mapMode = ref("3d") // 地图模式 2d 3d
     const flyPoi = ref(null)
     const flyArea = ref(null)
     const contextMenu = ref(null) // 2d 右键菜单

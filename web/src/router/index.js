@@ -15,21 +15,8 @@ const routes = [
         },
     },
     {
-        path: "/threeAndCesium",
-        name: "ThreeAndCesium",
-        component: () => import("@/pages/ThreeAndCesium/ThreeAndCesium.vue"),
-        meta: {
-            describe: "尝试三维Cesium和Three结合的效果案例，可以删除",
-        },
-    },
-    {
-        path: "/Login",
-        name: "Login",
-        component: () => import("@/views/Login/Login.vue"),
-    },
-    {
-        path: "/layout",
-        component: () => import("@/views/Layout/Layout.vue"),
+        path: "/map-layout",
+        component: () => import("@/views/Layout/MapLayout.vue"),
         children: [
             {
                 path: "/overview",
@@ -39,6 +26,22 @@ const routes = [
                     describe: "大屏展示",
                 },
             },
+
+        ],
+    },
+    {
+        path: "/layout",
+        component: () => import("@/views/Layout/Layout.vue"),
+        children: [
+            {
+                path: "/Tres",
+                component: () => import("@/views/ThreeBuildHouse/index.vue"),
+                meta: {
+                    title: "智居搭",
+                    describe: "智居搭",
+                },
+            },
+
         ],
     },
 

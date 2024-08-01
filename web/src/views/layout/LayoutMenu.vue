@@ -52,6 +52,10 @@ const menuState = reactive({
             label: "大屏展示",
             route: "/overview",
         },
+        {
+            label: "Tres",
+            route: "/Tres",
+        },
     ],
     onClickMenu(menu) {
         router.replace({ path: menu.route })
