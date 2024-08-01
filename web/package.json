@@ -11,6 +11,7 @@
     "git": "& .\\git_commit.bat"
   },
   "dependencies": {
+    "3d-tiles-renderer": "^0.3.36",
     "@amap/amap-jsapi-loader": "^1.0.1",
     "@ant-design/icons-vue": "^7.0.1",
     "@antv/l7": "^2.22.0",
