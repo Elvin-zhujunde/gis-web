@@ -14,7 +14,6 @@ Cesium.Ion.defaultAccessToken =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyMGZjMTZjMC00YTQ4LTQwODAtOTg5YS1lOWU2NThjMTk0YjMiLCJpZCI6MjExNTEwLCJpYXQiOjE3MTQxMjIzNDZ9.o5yDodfaExKiDdc9mN0N86ybB3l2K4ggAThC3SWURkE"
 let viewer
 // import "cesium/Build/Cesium/Widgets/widgets.css" // 引入Cesium的CSS样式
-
 // 引用Cesium核心库
 // import * as Cesium from "cesium"
 
@@ -99,3 +98,4 @@ onBeforeMount(destroyCesium)
     }
 }
 </style>
+

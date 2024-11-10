@@ -21,11 +21,21 @@ function renderPolygon(geojson, zoomto = true) {
             viewer.dataSources.add(dataSource)
             const entities = dataSource.entities.values
             entities.forEach((entity, i) => {
-                entity.polygon.material = Cesium.Color.fromCssColorString("#fff").withAlpha(0)
+                entity.polygon.material = new Cesium.ColorMaterialProperty(
+                    new Cesium.CallbackProperty(() => {
+                        return entity.isHighlighted ? 
+                            Cesium.Color.fromCssColorString("#4e9eff").withAlpha(0.3) :
+                            Cesium.Color.fromCssColorString("#3370ff").withAlpha(0.1)
+                    }, false)
+                )
+                
                 entity.polyline = {
                     positions: entity.polygon.hierarchy._value.positions,
-                    width: 3,
-                    material: Cesium.Color.fromCssColorString("#689fd2"),
+                    width: 2,
+                    material: new Cesium.PolylineDashMaterialProperty({
+                        color: Cesium.Color.fromCssColorString("#4e9eff"),
+                        dashLength: 16.0,
+                    }),
                 }
                 const center = Cesium.BoundingSphere.fromPoints(entity.polygon.hierarchy._value.positions).center
                 // @@自定义属性 name 取决于geojson中的name字段
@@ -34,18 +44,26 @@ function renderPolygon(geojson, zoomto = true) {
                 if (!provinceMap.get(provinceName)) {
                     entity.label = {
                         text: provinceName,
-                        color: Cesium.Color.fromCssColorString("#fff"),
-                        font: "normal 32px MicroSoft YaHei",
+                        font: "normal 28px MicroSoft YaHei",
+                        fillColor: Cesium.Color.WHITE,
+                        outlineColor: Cesium.Color.fromCssColorString("#2c58a6"),
+                        outlineWidth: 2,
+                        style: Cesium.LabelStyle.FILL_AND_OUTLINE,
                         showBackground: true,
+                        backgroundColor: Cesium.Color.fromCssColorString("#2c58a6").withAlpha(0.5),
+                        backgroundPadding: new Cesium.Cartesian2(7, 5),
                         scale: 0.5,
-                        horizontalOrigin: Cesium.HorizontalOrigin.LEFT_CLICK,
-                        verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
-                        disableDepthTestDistance: 10000.0,
+                        horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
+                        verticalOrigin: Cesium.VerticalOrigin.CENTER,
+                        disableDepthTestDistance: Number.POSITIVE_INFINITY,
+                        distanceDisplayCondition: new Cesium.DistanceDisplayCondition(0, 10000000),
                         enableCollisionDetection: true,
                     }
                     provinceMap.set(provinceName, 1)
                 }
                 entity.position = center
+                entity.isHighlighted = false
+                entity.polygon.classificationType = Cesium.ClassificationType.BOTH
             })
             const z = [10000000, 1000000, 800000][mapStore.cascader_vmodel?.length - 1]
             const [x, y] = turf.center(geojson).geometry.coordinates
@@ -77,5 +95,38 @@ watch(
         deep: true,
     },
 )
+
+// 添加鼠标事件处理
+onMounted(() => {
+    const viewer = window.viewer
+    const handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas)
+    
+    // 记录上一个高亮的实体
+    let previousEntity = null
+    
+    handler.setInputAction((movement) => {
+        // 清除上一个实体的高亮
+        if (previousEntity) {
+            previousEntity.isHighlighted = false
+        }
+
+        const pickedFeature = viewer.scene.pick(movement.endPosition)
+        if (Cesium.defined(pickedFeature)) {
+            const entity = pickedFeature.id
+            if (entity) {
+                entity.isHighlighted = true
+                previousEntity = entity
+            }
+        } else {
+            // 如果鼠标没有指向任何实体，将 previousEntity 设为 null
+            previousEntity = null
+        }
+    }, Cesium.ScreenSpaceEventType.MOUSE_MOVE)
+
+    // 组件卸载时清理事件处理器
+    onUnmounted(() => {
+        handler.destroy()
+    })
+})
 </script>
 <style scoped lang="less"></style>

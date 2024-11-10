@@ -22,12 +22,6 @@
         <Panel>
             <template #header>
                 <BoxPanel
-                    style="height: 200px"
-                    title="number"
-                ></BoxPanel>
-            </template>
-            <template #default>
-                <BoxPanel
                     style="height: 300px"
                     title="一标四实"
                 >
@@ -41,6 +35,8 @@
                         titleText="一标四实"
                     />
                 </BoxPanel>
+            </template>
+            <template #default>
                 <BoxPanel
                     style="height: 350px"
                     title="统计(可点击)"
@@ -125,3 +121,4 @@ watch(
     height: 40vh;
 }
 </style>
+
