@@ -9,12 +9,17 @@ import "@/styles/index.less"
 import * as GobalTools from "./tool/GobalTool"
 import * as api from "@/api/index"
 
+
+import 'element-plus/dist/index.css'
+import ElementPlus from 'element-plus'
+
 window._tool = GobalTools
 window._api = api
 // import { init } from "./store/map"
 // init()
 const pinia = createPinia()
 const app = createApp(App)
+app.use(ElementPlus)
 
 app.use(pinia).use(router).use(Antd)
 app.mount("#app")

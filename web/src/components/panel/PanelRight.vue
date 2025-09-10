@@ -18,7 +18,7 @@
 
 <script setup>
 import { LeftOutlined, RightOutlined } from "@ant-design/icons-vue"
-const [value, toggle] = useToggle(true)
+const [value, toggle] = useToggle(false)
 const rightPx = computed(() => (value.value ? "-400px" : "0px"))
 function onCollapse() {}
 </script>

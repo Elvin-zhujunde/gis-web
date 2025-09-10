@@ -37,6 +37,7 @@
                 </BoxPanel>
             </template>
             <template #default>
+      
                 <BoxPanel
                     style="height: 350px"
                     title="统计(可点击)"
@@ -70,6 +71,28 @@ import { useMapStore } from "@/store/map"
 const mapStore = useMapStore()
 
 let { isEmpty } = window._tool
+const tableData = [
+    {
+        date: "2016-05-03",
+        name: "Tom",
+        address: "No. 189, Grove St, Los Angeles",
+    },
+    {
+        date: "2016-05-02",
+        name: "Tom",
+        address: "No. 189, Grove St, Los Angeles",
+    },
+    {
+        date: "2016-05-04",
+        name: "Tom",
+        address: "No. 189, Grove St, Los Angeles",
+    },
+    {
+        date: "2016-05-01",
+        name: "Tom",
+        address: "No. 189, Grove St, Los Angeles",
+    },
+]
 const state = reactive({
     options: computed(() => {
         const arr = ["人口", "房屋", "企业", "设施", "地址", "事件"]
@@ -119,6 +142,12 @@ watch(
 }
 .mix-line-bar {
     height: 40vh;
+}
+:deep(.el-table--default) {
+    height: 100% !important;
+}
+:deep(.el-table__inner-wrwapper){
+    height: 100% !important;
 }
 </style>
 

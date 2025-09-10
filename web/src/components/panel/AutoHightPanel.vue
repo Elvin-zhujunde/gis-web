@@ -5,9 +5,9 @@
         </div>
 
         <div class="auto-content">
-            <div class="content-wrapper">
+            <!-- <div class="content-wrapper"> -->
                 <slot></slot>
-            </div>
+            <!-- </div> -->
         </div>
         <div class="footer">
             <slot name="footer"></slot>
@@ -26,12 +26,15 @@
     .header {
     }
     .auto-content {
-        flex-grow: 1;
+        flex: 1;
         height: 0;
         overflow-y: overlay;
         position: relative;
         display: flex;
         flex-direction: column;
+        :deep(.el-table){
+            height: 100%;
+        }
         .content-header {
             border: 1px solid #000;
             width: 100%;
