@@ -22,7 +22,6 @@
     "autofit.js": "^3.1.0",
     "echarts": "^5.4.3",
     "lodash": "^4.17.21",
-    "md-editor-v3": "^4.15.2",
     "nprogress": "^0.2.0",
     "pinia": "^2.1.7",
     "three": "^0.167.0",

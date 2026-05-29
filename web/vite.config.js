@@ -149,7 +149,6 @@ export default defineConfig(({ mode }) => {
                 "cesium",
                 "echarts",
                 "lodash",
-                "md-editor-v3",
             ],
         },
 
