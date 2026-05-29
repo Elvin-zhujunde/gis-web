@@ -29,21 +29,7 @@ const routes = [
 
         ],
     },
-    {
-        path: "/layout",
-        component: () => import("@/views/Layout/Layout.vue"),
-        children: [
-            {
-                path: "/Tres",
-                component: () => import("@/views/ThreeBuildHouse/index.vue"),
-                meta: {
-                    title: "智居搭",
-                    describe: "智居搭",
-                },
-            },
 
-        ],
-    },
 
     {
         path: "/:pathMatch(.*)*",

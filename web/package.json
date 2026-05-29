@@ -16,8 +16,6 @@
     "@ant-design/icons-vue": "^7.0.1",
     "@antv/l7": "^2.22.0",
     "@antv/l7-maps": "^2.22.0",
-    "@tresjs/cientos": "^3.9.0",
-    "@tresjs/core": "^4.2.3",
     "@turf/turf": "^6.5.0",
     "@vueuse/core": "^10.11.0",
     "ant-design-vue": "4.x",
@@ -30,6 +28,8 @@
     "three": "^0.167.0",
     "tweakpane": "^4.0.4",
     "vue": "^3.3.4",
+    "element-plus": "^2.9.1",
+
     "vue-router": "^4.2.5"
   },
   "eslintConfig": {
